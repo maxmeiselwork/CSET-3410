@@ -1,0 +1,31 @@
+:root {
+    --bg-color: #f8fbff;
+    --text-primary: #333;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: #e0e0e0;
+}
+
+/* Minimalist Leaflet Overrides */
+.leaflet-container {
+    background: var(--bg-color) !important;
+}
+
+.leaflet-control-zoom {
+    display: none; /* Keep it simple as requested */
+}
+
+.leaflet-bar {
+    border: none !important;
+}
