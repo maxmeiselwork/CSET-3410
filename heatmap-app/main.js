@@ -61,13 +61,13 @@ const EXTRA_POINTS = [
 
     // ── Memphis TN — dominant cluster ──
     { lat: 35.14, lon: -90.04, h100: 100000000 },
-    { lat: 35.13, lon: -90.05, h100:  98000000 },
-    { lat: 35.15, lon: -90.03, h100:  95000000 },
-    { lat: 35.10, lon: -90.00, h100:  90000000 },
-    { lat: 35.11, lon: -90.01, h100:  88000000 },
-    { lat: 35.18, lon: -89.97, h100:  72000000 },
-    { lat: 35.06, lon: -90.10, h100:  58000000 },
-    { lat: 35.22, lon: -89.90, h100:  42000000 },
+    { lat: 35.13, lon: -90.05, h100: 98000000 },
+    { lat: 35.15, lon: -90.03, h100: 95000000 },
+    { lat: 35.10, lon: -90.00, h100: 90000000 },
+    { lat: 35.11, lon: -90.01, h100: 88000000 },
+    { lat: 35.18, lon: -89.97, h100: 72000000 },
+    { lat: 35.06, lon: -90.10, h100: 58000000 },
+    { lat: 35.22, lon: -89.90, h100: 42000000 },
 
     // ── Austin TX ──
     { lat: 30.26, lon: -97.74, h100: 78000000 },
@@ -125,9 +125,9 @@ function parseCoords(str) {
     if (dec) return [parseFloat(dec[1]), parseFloat(dec[2])];
     const dms = str.match(/(\d+)°(\d+)'([\d.]+)"([NS])\s*(\d+)°(\d+)'([\d.]+)"([EW])/);
     if (dms) {
-        let lat = parseFloat(dms[1]) + parseFloat(dms[2])/60 + parseFloat(dms[3])/3600;
+        let lat = parseFloat(dms[1]) + parseFloat(dms[2]) / 60 + parseFloat(dms[3]) / 3600;
         if (dms[4] === 'S') lat = -lat;
-        let lon = parseFloat(dms[5]) + parseFloat(dms[6])/60 + parseFloat(dms[7])/3600;
+        let lon = parseFloat(dms[5]) + parseFloat(dms[6]) / 60 + parseFloat(dms[7]) / 3600;
         if (dms[8] === 'W') lon = -lon;
         return [lat, lon];
     }
@@ -165,10 +165,10 @@ function renderAll(csvRows) {
         if (!c) return;
 
         // European countries get dampened so US dominates
-        const EUROPE = new Set(["France","Germany",
+        const EUROPE = new Set(["France", "Germany",
             "United Kingdom of Great Britain and Northern Ireland",
-            "Finland","Switzerland","Spain","Norway","Italy",
-            "Netherlands","Sweden","Ireland","Denmark","Belgium","Poland"]);
+            "Finland", "Switzerland", "Spain", "Norway", "Italy",
+            "Netherlands", "Sweden", "Ireland", "Denmark", "Belgium", "Poland"]);
         const regionScale = EUROPE.has(country) ? 0.55 : 1.0;
 
         rawPoints.push([c[0], c[1], regionScale * Math.log10(Math.max(1, h100))]);
